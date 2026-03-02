@@ -315,6 +315,22 @@ public final class AndroidBackend: BackendFeatures.BaseStubs {
         // TODO(stackotter): Use density-adaptive units everywhere
     }
 
+    public func createScrollContainer(for child: Widget) -> Widget {
+        CustomScrollView(Self.activity, child: child, environment: Self.env)
+            .as(AndroidKit.View.self)!
+    }
+
+    public func updateScrollContainer(
+        _ widget: Widget,
+        environment: EnvironmentValues,
+        bounceHorizontally: Bool,
+        bounceVertically: Bool,
+        hasHorizontalScrollBar: Bool,
+        hasVerticalScrollBar: Bool
+    ) {
+        // TODO(stackotter): Respect environment.scrollDismissesKeyboardMode
+    }
+
     public func createButton() -> Widget {
         AndroidKit.Button(Self.activity, environment: Self.env)
             .as(AndroidKit.View.self)!
