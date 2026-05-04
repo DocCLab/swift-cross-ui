@@ -258,6 +258,8 @@ struct WindowingApp: App {
                     Image(bannerImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .frame(minHeight: 40)
+                        .draggable(TransferrableData(url: bannerImage))
 
                     Divider()
 

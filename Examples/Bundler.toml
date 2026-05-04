@@ -94,3 +94,8 @@ identifier = 'dev.swiftcrossui.MusicPlayerExample'
 product = 'MusicPlayerExample'
 version = '0.1.0'
 icon = 'Icons/MusicPlayerExample.png'
+
+[apps.DragAndDropExample]
+identifier = 'dev.swiftcrossui.DragAndDropExample'
+product = 'DragAndDropExample'
+version = '0.1.0'
