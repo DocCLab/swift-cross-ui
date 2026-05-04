@@ -74,7 +74,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
             proposedSize: childProposal,
             environment: environment.with(
                 \.allowLayoutCaching,
-                !willEarlyExit || environment.allowLayoutCaching
+                environment.allowLayoutCaching
             )
         )
 
