@@ -306,6 +306,8 @@ let package = Package(
                 "SwiftCrossUI",
                 "WinUIInterop",
                 .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "UWP", package: "swift-winui"),
+                .product(name: "CWinRT", package: "swift-winui"),
                 .product(name: "WinAppSDK", package: "swift-winui"),
                 .product(name: "WindowsFoundation", package: "swift-winui"),
                 .product(name: "Mutex", package: "swift-mutex"),
