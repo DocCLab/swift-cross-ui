@@ -35,6 +35,7 @@ let package = Package(
             url: "https://github.com/stackotter/swift-miniaudio",
             .upToNextMinor(from: "0.1.2")
         ),
+        .package(path: "../../swift-winui"),
     ] + hotReloadingDependencies,
     targets: [
         .executableTarget(
