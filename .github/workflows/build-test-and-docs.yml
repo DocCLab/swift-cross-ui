@@ -11,6 +11,7 @@ on:
 
 jobs:
   check_file_changes:
+    if: github.repository == 'moreSwift/swift-cross-ui'
     runs-on: ubuntu-24.04
     strategy:
       matrix:

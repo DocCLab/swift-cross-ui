@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.12/Schema/VersionedDocC.schema.json",
+  "schemaVersion": 1,
+  "projectName": "swift-cross-ui",
+  "moduleName": "SwiftCrossUI",
+  "modulePath": "swiftcrossui",
+  "targetName": "SwiftCrossUI",
+  "catalogPath": "Sources/SwiftCrossUI/SwiftCrossUI.docc",
+  "hostingBasePath": "/swift-cross-ui",
+  "defaultVersion": "main",
+  "versions": [
+    {
+      "name": "main",
+      "ref": "HEAD",
+      "sourceRef": "main"
+    },
+    {
+      "name": "0.8.0",
+      "ref": "v0.8.0"
+    },
+    {
+      "name": "0.7.0",
+      "ref": "v0.7.0"
+    }
+  ],
+  "sourceRepository": "https://github.com/moreSwift/swift-cross-ui",
+  "buildArguments": [
+    "--disable-index-store",
+    "--disable-prefetching",
+    "--force-resolved-versions"
+  ],
+  "ociCache": {
+    "repository": "ghcr.io/docclab/swift-cross-ui-docc-cache"
+  },
+  "allowedModules": [
+    "SwiftCrossUI"
+  ],
+  "symbolGraph": {
+    "minimumAccessLevel": "public",
+    "skipProtocolImplementations": true
+  },
+  "apiChanges": {
+    "pageSize": 10
+  }
+}
