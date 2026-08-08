@@ -11,7 +11,7 @@ on:
 
 jobs:
   check_file_changes:
-    if: github.repository == 'moreSwift/swift-cross-ui'
+    if: github.repository == 'moreSwift/swift-cross-ui' || github.repository == 'DocCLab/swift-cross-ui'
     runs-on: ubuntu-24.04
     strategy:
       matrix:
@@ -522,79 +522,46 @@ jobs:
         # in the 'docc merge' command
         xcode-version: '16.3'
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
 
     - name: Swift Version
       run: swift --version
 
-    - name: Compile SwiftCrossUI docs
-      uses: ./.github/actions/compile-docs
+    - name: Download backend symbol graphs
+      uses: actions/download-artifact@v4
       with:
-        target: SwiftCrossUI
-        use-swiftpm: true
+        pattern: '*Backend-symbol-graphs.tar.gz'
+        path: .docs/downloaded-symbol-graphs
+        merge-multiple: true
 
-    - name: Compile AppKitBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: AppKitBackend
-        use-symbol-graph-artifact: true
-
-    - name: Compile UIKitBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: UIKitBackend
-        use-symbol-graph-artifact: true
-
-    - name: Compile GtkBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: GtkBackend
-        use-symbol-graph-artifact: true
-
-    - name: Compile Gtk3Backend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: Gtk3Backend
-        use-symbol-graph-artifact: true
-
-    - name: Compile WinUIBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: WinUIBackend
-        use-symbol-graph-artifact: true
-
-    - name: Compile AndroidBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: AndroidBackend
-        use-symbol-graph-artifact: true
-
-    - name: Merge DocC archives
+    - name: Extract backend symbol graphs
       run: |
-        mkdir DocsBuild
-        xcrun docc merge \
-          SwiftCrossUI.doccarchive \
-          AppKitBackend.doccarchive \
-          UIKitBackend.doccarchive \
-          GtkBackend.doccarchive \
-          Gtk3Backend.doccarchive \
-          WinUIBackend.doccarchive \
-          AndroidBackend.doccarchive \
-          --output-path DocsBuild
+        set -euo pipefail
+        mkdir -p .docs/external-symbol-graphs/main
+        for archive in .docs/downloaded-symbol-graphs/*.tar.gz; do
+          tar -xzf "$archive" -C .docs/external-symbol-graphs/main
+        done
 
-    - name: Assemble GitHub Pages artifact
-      run: |
-        set -eux
+    - name: Restore VersionedDocC cache
+      uses: actions/cache@v5
+      with:
+        path: .docs/cache/versioned-docc
+        key: versioned-docc-multi-module-${{ runner.os }}-${{ hashFiles('.vdc.json', 'Package.resolved') }}-${{ github.sha }}
+        restore-keys: |
+          versioned-docc-multi-module-${{ runner.os }}-${{ hashFiles('.vdc.json', 'Package.resolved') }}-
 
-        cp Pages/google5d79e0866e2627dd.html DocsBuild/google5d79e0866e2627dd.html
-        cp Pages/CNAME DocsBuild/CNAME
-        cp Pages/index.html DocsBuild/index.html
+    - name: Build versioned multi-module documentation
+      uses: DocCLab/VersionedDocC@0.0.15-test
+      with:
+        config: .vdc.json
 
     - name: Upload GitHub Pages artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
-        path: DocsBuild/
+        path: .docs/build/versioned-site/swift-cross-ui
 
   deploy-docs:
     environment:

@@ -1,11 +1,38 @@
 {
-  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.12/Schema/VersionedDocC.schema.json",
+  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.15-test/Schema/VersionedDocC.schema.json",
   "schemaVersion": 1,
   "projectName": "swift-cross-ui",
   "moduleName": "SwiftCrossUI",
   "modulePath": "swiftcrossui",
   "targetName": "SwiftCrossUI",
   "catalogPath": "Sources/SwiftCrossUI/SwiftCrossUI.docc",
+  "additionalModules": [
+    {
+      "moduleName": "AppKitBackend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AppKitBackend-symbol-graphs",
+      "versions": ["main"]
+    },
+    {
+      "moduleName": "UIKitBackend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/UIKitBackend-symbol-graphs",
+      "versions": ["main"]
+    },
+    {
+      "moduleName": "GtkBackend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/GtkBackend-symbol-graphs",
+      "versions": ["main"]
+    },
+    {
+      "moduleName": "Gtk3Backend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/Gtk3Backend-symbol-graphs",
+      "versions": ["main"]
+    },
+    {
+      "moduleName": "WinUIBackend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/WinUIBackend-symbol-graphs",
+      "versions": ["main"]
+    }
+  ],
   "hostingBasePath": "/swift-cross-ui",
   "defaultVersion": "main",
   "versions": [
@@ -33,7 +60,12 @@
     "repository": "ghcr.io/docclab/swift-cross-ui-docc-cache"
   },
   "allowedModules": [
-    "SwiftCrossUI"
+    "SwiftCrossUI",
+    "AppKitBackend",
+    "UIKitBackend",
+    "GtkBackend",
+    "Gtk3Backend",
+    "WinUIBackend"
   ],
   "symbolGraph": {
     "minimumAccessLevel": "public",
