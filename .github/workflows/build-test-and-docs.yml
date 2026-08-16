@@ -564,7 +564,7 @@ jobs:
           versioned-docc-multi-module-${{ runner.os }}-${{ hashFiles('.vdc.json', 'Package.resolved') }}-
 
     - name: Build versioned multi-module documentation
-      uses: DocCLab/VersionedDocC@0.0.18
+      uses: DocCLab/VersionedDocC@0.0.19
       with:
         config: .vdc.json
         output: .docs/build/pages
