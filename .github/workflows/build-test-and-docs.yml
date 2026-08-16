@@ -543,6 +543,18 @@ jobs:
           tar -xzf "$archive" -C .docs/external-symbol-graphs/main
         done
 
+    - name: Configure documentation hosting
+      shell: bash
+      run: |
+        set -euo pipefail
+        hosting_base_path="/"
+        if [[ "$GITHUB_REPOSITORY" != "moreSwift/swift-cross-ui" ]]; then
+          hosting_base_path="/${GITHUB_REPOSITORY#*/}"
+        fi
+        vdc_config="$(jq --arg hostingBasePath "$hosting_base_path" \
+          '.hostingBasePath = $hostingBasePath' .vdc.json)"
+        printf '%s\n' "$vdc_config" > .vdc.json
+
     - name: Restore VersionedDocC cache
       uses: actions/cache@v5
       with:
@@ -552,15 +564,25 @@ jobs:
           versioned-docc-multi-module-${{ runner.os }}-${{ hashFiles('.vdc.json', 'Package.resolved') }}-
 
     - name: Build versioned multi-module documentation
-      uses: DocCLab/VersionedDocC@0.0.16
+      uses: DocCLab/VersionedDocC@0.0.18
       with:
         config: .vdc.json
+        output: .docs/build/pages
+
+    - name: Copy static Pages files
+      run: |
+        set -euo pipefail
+        # Keep VDC's version-aware index.html instead of the legacy /documentation redirect.
+        cp \
+          Pages/CNAME \
+          Pages/google5d79e0866e2627dd.html \
+          .docs/build/pages/
 
     - name: Upload GitHub Pages artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
-        path: .docs/build/versioned-site/swift-cross-ui
+        path: .docs/build/pages
 
   deploy-docs:
     environment:

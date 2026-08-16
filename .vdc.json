@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.16/Schema/VersionedDocC.schema.json",
+  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.18/Schema/VersionedDocC.schema.json",
   "schemaVersion": 1,
   "projectName": "swift-cross-ui",
   "moduleName": "SwiftCrossUI",
@@ -31,9 +31,14 @@
       "moduleName": "WinUIBackend",
       "symbolGraphPath": ".docs/external-symbol-graphs/{version}/WinUIBackend-symbol-graphs",
       "versions": ["main"]
+    },
+    {
+      "moduleName": "AndroidBackend",
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AndroidBackend-symbol-graphs",
+      "versions": ["main"]
     }
   ],
-  "hostingBasePath": "/swift-cross-ui",
+  "hostingBasePath": "/",
   "defaultVersion": "main",
   "versions": [
     {
@@ -65,7 +70,8 @@
     "UIKitBackend",
     "GtkBackend",
     "Gtk3Backend",
-    "WinUIBackend"
+    "WinUIBackend",
+    "AndroidBackend"
   ],
   "symbolGraph": {
     "minimumAccessLevel": "public",
