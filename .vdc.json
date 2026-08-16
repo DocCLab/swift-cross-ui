@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.0.19/Schema/VersionedDocC.schema.json",
+  "$schema": "https://raw.githubusercontent.com/DocCLab/VersionedDocC/0.1.2/Schema/VersionedDocC.schema.json",
   "schemaVersion": 1,
   "projectName": "swift-cross-ui",
   "moduleName": "SwiftCrossUI",
@@ -9,33 +9,27 @@
   "additionalModules": [
     {
       "moduleName": "AppKitBackend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AppKitBackend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AppKitBackend-symbol-graphs"
     },
     {
       "moduleName": "UIKitBackend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/UIKitBackend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/UIKitBackend-symbol-graphs"
     },
     {
       "moduleName": "GtkBackend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/GtkBackend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/GtkBackend-symbol-graphs"
     },
     {
       "moduleName": "Gtk3Backend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/Gtk3Backend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/Gtk3Backend-symbol-graphs"
     },
     {
       "moduleName": "WinUIBackend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/WinUIBackend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/WinUIBackend-symbol-graphs"
     },
     {
       "moduleName": "AndroidBackend",
-      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AndroidBackend-symbol-graphs",
-      "versions": ["main"]
+      "symbolGraphPath": ".docs/external-symbol-graphs/{version}/AndroidBackend-symbol-graphs"
     }
   ],
   "hostingBasePath": "/",
